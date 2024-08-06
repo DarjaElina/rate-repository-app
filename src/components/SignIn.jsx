@@ -59,7 +59,7 @@ const initialValues = {
   password: ''
 }
 
-const SignInForm = ({ onSubmit }) => {
+export const SignInForm = ({ onSubmit }) => {
   const { handleSubmit, handleChange, values, touched, errors } = useFormik({
     initialValues,
     validationSchema,
