@@ -2,6 +2,8 @@ import * as yup from 'yup';
 import { View, TextInput, Pressable, StyleSheet } from 'react-native';
 import { useFormik } from 'formik';
 import theme from '../theme';
+import useSignIn from '../hooks/useSignIn';
+import { useNavigate } from 'react-router-native';
 
 import Text from './Text';
 
@@ -68,6 +70,7 @@ const SignInForm = ({ onSubmit }) => {
     <View style={styles.container}>
       <View style={styles.form}>
         <CInput
+          autoCapitalize='none'
           error={touched.username && errors.username}
           placeholder="Username"
           value={values.username}
@@ -77,6 +80,7 @@ const SignInForm = ({ onSubmit }) => {
           <Text style={styles.errorText}>{errors.username}</Text>
         )}
         <CInput
+          autoCapitalize='none'
           error={touched.password && errors.password}
           placeholder="Password"
           value={values.password}
@@ -95,9 +99,18 @@ const SignInForm = ({ onSubmit }) => {
 }
 
 const SignIn = () => {
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      await signIn({ username, password });
+      navigate('/');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return <SignInForm onSubmit={onSubmit}/>

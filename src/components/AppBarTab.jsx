@@ -16,7 +16,7 @@ const AppBarTab = ({ url, text }) => {
           style={{color: '#fff'}}
           fontSize="subheading"
           fontWeight="bold">
-            {text}
+          {text}
         </Text>
       </Link>
     </View>
