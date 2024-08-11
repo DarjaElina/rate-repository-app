@@ -4,18 +4,24 @@ import theme from '../theme';
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: 10,
     borderRadius: 4,
     backgroundColor: theme.colors.primary,
+    margin: 10
+  },
+  colorSecondary: {
+    backgroundColor: "#E52B50"
   }
 });
 
-const Button = ({ onPress, title }) => {
+const Button = ({ type, onPress, title }) => {
+  const buttonStyle = [
+    styles.button,
+    type === 'delete' && styles.colorSecondary
+  ]
   return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={{color: '#fff'}}
+    <Pressable style={buttonStyle} onPress={onPress}>
+      <Text style={{color: '#fff', textAlign: 'center'}}
           fontSize="subheading"
           fontWeight="bold">
         {title}

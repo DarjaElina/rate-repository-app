@@ -12,12 +12,12 @@ const styles = StyleSheet.create({
   }
 })
 
-const RepositoryDetailsList = ({ stars, forks, reviews, rating }) => {
+const RepositoryDetailsList = ({ stars, forks, reviewCount, rating }) => {
   return (
     <View style={styles.container}>
       <RepositoryDetailsItem number={stars} text="Stars"/>
       <RepositoryDetailsItem number={forks} text="Forks"/>
-      <RepositoryDetailsItem number={reviews} text="Reviews"/>
+      <RepositoryDetailsItem number={reviewCount} text="Reviews"/>
       <RepositoryDetailsItem number={rating} text="Rating"/>
     </View>
   )

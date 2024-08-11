@@ -1,8 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { ME } from "../graphql/queries";
+import { GET_CURRENT_USER } from "../graphql/queries";
 
-const useAuthUser = () => {
-  const { data, error, loading } = useQuery(ME);
+const useAuthUser = (includeReviews = false) => {
+  const { data, error, loading } = useQuery(GET_CURRENT_USER, {
+    variables: { includeReviews }
+  });
 
   return {
     user: data ? data.me : null,
